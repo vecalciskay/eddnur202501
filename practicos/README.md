@@ -6,4 +6,6 @@ debe ser presentado.
 
 ## Lista de prácticos
 
-1. Práctico 1 
+| Práctico                         | Fecha               |
+|----------------------------------|---------------------|
+| [TP1 - Gravedad](./p1/README.md) | Viernes 28 de marzo |

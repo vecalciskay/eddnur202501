@@ -22,7 +22,7 @@ public class OrdenarQuicksort {
     }
 
     public static void ordenarArreglo(int[] arreglo) {
-        quickSort(arreglo, 0, arreglo.length - 1);
+        sortHelper(arreglo, 0, arreglo.length - 1);
     }
 
     // 5   7   3   5   4   8   9   5   6   1   5
@@ -30,54 +30,33 @@ public class OrdenarQuicksort {
     // Menores o iguales = 3   5   4   5   1   5
     // Mayores = 7   8   9   6
     // 3   5   4   5   1   5   5   7   8   9   6
-// method to find the partition position
-    static int partition(int array[], int low, int high) {
 
-        // choose the rightmost element as pivot
-        int pivot = array[high];
-
-        // pointer for greater element
-        int i = (low - 1);
-
-        // traverse through all elements
-        // compare each element with pivot
-        for (int j = low; j < high; j++) {
-            if (array[j] <= pivot) {
-
-                // if element smaller than pivot is found
-                // swap it with the greater element pointed by i
-                i++;
-
-                // swapping element at i with element at j
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-
+    private static void sortHelper(int[] array, int p, int r) {
+        if (p < r) {
+            int q = doHoarePartitioning(array, p, r);
+            sortHelper(array, p, q);
+            sortHelper(array, q + 1, r);
         }
-
-        // swap the pivot element with the greater element specified by i
-        int temp = array[i + 1];
-        array[i + 1] = array[high];
-        array[high] = temp;
-
-        // return the position from where partition is done
-        return (i + 1);
     }
 
-    static void quickSort(int array[], int low, int high) {
-        if (low < high) {
+    private static int doHoarePartitioning(int[] array, int p, int r) {
+        int randomIndex = p + (int)(Math.random() * (r - p + 1));
+        swap(array, p, randomIndex);  // Randomize pivot
+        int pivot = array[p];
+        int i = p - 1;
+        int j = r + 1;
 
-            // find pivot element such that
-            // elements smaller than pivot are on the left
-            // elements greater than pivot are on the right
-            int pi = partition(array, low, high);
-
-            // recursive call on the left of pivot
-            quickSort(array, low, pi - 1);
-
-            // recursive call on the right of pivot
-            quickSort(array, pi + 1, high);
+        while (true) {
+            do { i++; } while (array[i] < pivot);
+            do { j--; } while (array[j] > pivot);
+            if (i < j) swap(array, i, j);
+            else return j;
         }
+    }
+
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
     }
 }
