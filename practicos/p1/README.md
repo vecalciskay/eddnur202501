@@ -68,6 +68,6 @@ $$y_1 = y_0  + v_0\dot \Delta t + \frac 1 2 g \dot (\Delta t)^2$$
 
 Donde:
 
-$$g = 9.81 \frac m s^2$$
+$$g = 9.81 \frac{m}{s^2}$$
 
 $$\Delta t = 0.05 s$$
