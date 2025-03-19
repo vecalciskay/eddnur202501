@@ -59,6 +59,9 @@ que averiguar la nueva velocidad $v_1$ y la nueva posición
 $p_1 = (x_1, y_1)$ luego de 50 ms.
 
 Cálculo de la nueva velocidad $v$ en el eje $y$:
+
 $$v_1 = v_0 + g \dot \delta t$$
+
 Cálculo de la nueva posición $p_1$ en el eje $y$:
-$$y_1 = y_0  + v_0\dot \delta t + 1 \frac 2 g \dot (\delta t)^2$$
+
+$$y_1 = y_0  + v_0\dot \Delta t + \frac 1 2 g \dot (\delta t)^2$$
