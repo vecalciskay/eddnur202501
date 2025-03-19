@@ -71,3 +71,10 @@ Donde:
 $$g = 9.81 \frac{m}{s^2}$$
 
 $$\Delta t = 0.05 s$$
+
+La velocidad en $x$ se mantiene constante y la posición en
+ese eje se puede averiguar muy fácilmente con la velocidad.
+
+## Fecha de entrega
+
+La fecha de entrega del práctico es el 28 de marzo de 2025.
