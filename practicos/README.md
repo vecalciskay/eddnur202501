@@ -9,5 +9,4 @@ debe ser presentado.
 | Práctico                             | Fecha               |
 |--------------------------------------|---------------------|
 | [TP1 - Gravedad](./p1/README.md)     | Viernes 28 de marzo |
-|--------------------------------------|---------------------|
 | [TP2 - Servidor Web](./p2/README.md) | Martes 8 de abril   |
