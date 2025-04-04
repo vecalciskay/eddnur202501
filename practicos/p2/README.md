@@ -105,5 +105,5 @@ cómo va cambiando el hanoi hasta que se resuelve.
 
 ## Presentación
 
-La presentación del práctico se debe realizar hasta el 8 de
+La presentación del práctico se debe realizar hasta el 11 de
 abril de 2025
