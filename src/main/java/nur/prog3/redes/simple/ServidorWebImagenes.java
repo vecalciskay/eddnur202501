@@ -56,7 +56,7 @@ public class ServidorWebImagenes {
     }
 
     private void buscarYEnviarImagen(OutputStream output, String ordenHttp) throws IOException {
-        String pathGeneral = "C:/Deploy/www";
+        String pathGeneral = "C:/Users/Public/wwwedd";
         String pathRelativo = "";
         String regex =  "^GET (.+) HTTP\\/([0-9]\\.[0-9])$";
         Pattern pattern = Pattern.compile(regex);
