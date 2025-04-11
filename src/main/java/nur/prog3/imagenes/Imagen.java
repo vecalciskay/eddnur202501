@@ -114,20 +114,17 @@ public class Imagen {
         observado.firePropertyChange("IMAGEN", true, false);
     }
 
-    public void convertirGris() {
-        for (int i = 0; i < ancho; i++) {
-            for (int j = 0; j < alto; j++) {
-                // Si r=50, g= 80, b= 200
-                // x
-                // r = x, g=x, b= x
-                int r = (0x00FF0000 & pixeles[i][j]) >> 16;
-                int g = (0x0000FF00 & pixeles[i][j]) >> 8;
-                int b = (0x000000FF & pixeles[i][j]);
 
-                int x = (r+g+b) / 3;
-                pixeles[i][j] = x | (x << 8) | (x << 16);
-            }
-        }
+
+    public void notificarCambios() {
         observado.firePropertyChange("IMAGEN", true, false);
+    }
+
+    public int get(int i, int j) {
+        return pixeles[i][j];
+    }
+
+    public void set(int x, int y, int color) {
+        pixeles[x][y] = color;
     }
 }

@@ -1,6 +1,8 @@
 package nur.prog3.imagenes.gui;
 
 import nur.prog3.imagenes.Imagen;
+import nur.prog3.imagenes.operaciones.CnvertirAGris;
+import nur.prog3.imagenes.operaciones.IComando;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -73,7 +75,9 @@ public class ImagenFrame extends JFrame {
     }
 
     private void menuOperaciones_tonosdegris() {
-        modelo.convertirGris();
+        //modelo.convertirGris();
+        IComando cmd = new CnvertirAGris(modelo);
+        cmd.ejecutar();
     }
 
     private void menuArchivo_leerImagen() {
