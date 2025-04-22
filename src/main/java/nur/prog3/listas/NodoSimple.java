@@ -1,10 +1,10 @@
 package nur.prog3.listas;
 
-public class Nodo {
+public class NodoSimple {
     private Object contenido;
-    private Nodo siguiente;
+    private NodoSimple siguiente;
 
-    public Nodo(Object o) {
+    public NodoSimple(Object o) {
         contenido = o;
         siguiente = null;
     }
@@ -17,11 +17,11 @@ public class Nodo {
         this.contenido = contenido;
     }
 
-    public Nodo getSiguiente() {
+    public NodoSimple getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(Nodo siguiente) {
+    public void setSiguiente(NodoSimple siguiente) {
         this.siguiente = siguiente;
     }
 

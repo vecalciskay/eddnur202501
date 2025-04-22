@@ -1,14 +1,14 @@
 package nur.prog3.listas;
 
 public class ListaSimple {
-    private Nodo inicio;
+    private NodoSimple inicio;
 
     public ListaSimple() {
         inicio = null;
     }
 
     public void insertar(Object o) {
-        Nodo nuevo = new Nodo(o);
+        NodoSimple nuevo = new NodoSimple(o);
         nuevo.setSiguiente(inicio);
         inicio = nuevo;
     }
@@ -19,7 +19,7 @@ public class ListaSimple {
             return "[VACIA]";
         }
         StringBuilder resultado = new StringBuilder();
-        Nodo actual = inicio;
+        NodoSimple actual = inicio;
         while(actual != null) {
             resultado.append(actual.toString());
             actual = actual.getSiguiente();

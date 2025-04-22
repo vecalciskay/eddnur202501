@@ -1,14 +1,21 @@
 package nur.prog3.imagenes;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 
 /**
  * La forma en que un pixel toma u color es la siguiente
- * int color =  4 Bytes
- * 00000000 00000000 00000000 00000000
+ * <ul>
+ *     <li>int color =  4 Bytes</li>
+ *     <li>00000000 00000000 00000000 00000000</li>
+ * </ul>
  *
  * Por ejemplo: 255
  * 00000000 00000000 00000000 11111111
@@ -28,6 +35,11 @@ public class Imagen {
     private int[][] pixeles;
     private PropertyChangeSupport observado;
 
+    /**
+     * Constructor de imagen vacia con un ancho y un alto
+     * @param w Este es el ancho de la imagen
+     * @param h Este es el alto de la imagen
+     */
     public Imagen(int w, int h) {
         ancho = w;
         alto = h;
@@ -114,7 +126,39 @@ public class Imagen {
         observado.firePropertyChange("IMAGEN", true, false);
     }
 
+    public byte[] getBytes() {
+        BufferedImage bi = new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
+        WritableRaster raster = (WritableRaster)bi.getRaster();
+        int[] rasterPixels = transformarPuntos();
+        raster.setPixels(0, 0, ancho, alto, rasterPixels);
+        byte[] result;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            ImageIO.write(bi, "png", baos);
+            baos.flush();
+            result = baos.toByteArray();
+        }
+        catch (IOException e) {
+            throw new UncheckedIOException("No se pudo codificar la imagen", e);
+        }
+        return result;
+    }
 
+    private int[] transformarPuntos() {
+        int[] raster = new int[3*ancho*alto];
+        for (int i = 0; i < ancho; i++) {
+            for (int j = 0; j < alto; j++) {
+                int r = (0x00FF0000 & pixeles[i][j]) >> 16;
+                int g = (0x0000FF00 & pixeles[i][j]) >> 8;
+                int b = (0x000000FF & pixeles[i][j]);
+
+                int base = 3*(j*ancho + i);
+                raster[base] = r;
+                raster[base +1] = g;
+                raster[base +2] = b;
+            }
+        }
+        return raster;
+    }
 
     public void notificarCambios() {
         observado.firePropertyChange("IMAGEN", true, false);
