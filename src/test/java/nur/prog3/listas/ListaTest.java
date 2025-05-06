@@ -17,4 +17,100 @@ public class ListaTest {
 
         assertEquals(expected, result);
     }
+    @Test
+    void Get0Test() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+
+        String expected = "Luis";
+        String result = lista.get(0);
+
+        assertEquals(expected, result);
+    }
+    @Test
+    void Get2Test() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+
+        String expected = "Hugo";
+        String result = lista.get(2);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void GetOutOfBoundsTest() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+
+        String expected = null;
+        String result = lista.get(5);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void GetOutOfBoundsNegativeTest() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+
+        String expected = null;
+        String result = lista.get(-5);
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void Eliminar0Test() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+
+        String expected = "Paco --> Hugo --> ";
+        lista.eliminar(0);
+        String result = lista.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void EliminarYTamanoCorrectoTest() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+        lista.insertar("Daisy");
+
+        int expected = 2;
+        lista.eliminar(1);
+        lista.eliminar(2);
+        int result = lista.getTamano();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void IntercambiarTest() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+        lista.insertar("Daisy");
+
+        // intercambia Daisy con Paco
+        lista.intercambiar(0,2);
+        String expected = "Paco --> Luis --> Daisy --> Hugo --> ";
+        String result = lista.toString();
+
+        assertEquals(expected, result);
+    }
 }
