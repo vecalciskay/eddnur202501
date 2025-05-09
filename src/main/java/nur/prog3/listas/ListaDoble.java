@@ -5,12 +5,13 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Iterator;
 
-public class Lista<E> implements Iterable<E> {
+public class ListaDoble<E> implements  Iterable<E>{
     private static final Logger logger = LogManager.getRootLogger();
     protected Nodo<E> inicio;
+    protected Nodo<E> fin;
     protected int tamano;
-    public Lista() {
-
+    public ListaDoble() {
+        fin = null;
         inicio = null;
         tamano = 0;
     }
@@ -18,7 +19,26 @@ public class Lista<E> implements Iterable<E> {
     public void insertar(E o) {
         Nodo<E> nuevo = new Nodo<>(o);
         nuevo.setSiguiente(inicio);
+        if (inicio != null) {
+            inicio.setAnterior(nuevo);
+        }
         inicio = nuevo;
+        if (fin == null) {
+            fin = nuevo;
+        }
+        tamano++;
+    }
+
+    public void adicionar(E o) {
+        Nodo<E> nuevo = new Nodo<>(o);
+        nuevo.setAnterior(fin);
+        if (fin != null) {
+            fin.setSiguiente(nuevo);
+        }
+        fin = nuevo;
+        if (inicio == null) {
+            inicio = nuevo;
+        }
         tamano++;
     }
 
@@ -39,6 +59,23 @@ public class Lista<E> implements Iterable<E> {
 
         if (posicion == 0) {
             inicio = inicio.getSiguiente();
+            if (inicio == null) {
+                fin = null;
+            } else {
+                inicio.setAnterior(null);
+            }
+            tamano--;
+            return;
+        }
+
+        if (posicion == tamano - 1) {
+            logger.debug("Elimina el ultimo con nodo fin");
+            fin = fin.getAnterior();
+            if (fin == null) {
+                inicio = null;
+            } else {
+                fin.setSiguiente(null);
+            }
             tamano--;
             return;
         }
@@ -49,7 +86,9 @@ public class Lista<E> implements Iterable<E> {
             actual = actual.getSiguiente();
             posActual++;
         }
-        actual.setSiguiente(actual.getSiguiente().getSiguiente());
+        Nodo<E> nuevoSiguiente = actual.getSiguiente().getSiguiente();
+        actual.setSiguiente(nuevoSiguiente);
+        nuevoSiguiente.setAnterior(actual);
         tamano--;
     }
 
@@ -80,11 +119,22 @@ public class Lista<E> implements Iterable<E> {
             logger.error("La posicion " + posicion + " esta fuera de la lista");
             return null;
         }
-        Nodo<E> actual = inicio;
-        int posActual = 0;
-        while(posActual < posicion && actual != null) {
-            actual = actual.getSiguiente();
-            posActual++;
+        if (posicion < (tamano / 2)) {
+            Nodo<E> actual = inicio;
+            int posActual = 0;
+            while (posActual < posicion && actual != null) {
+                actual = actual.getSiguiente();
+                posActual++;
+            }
+
+            return actual;
+        }
+        logger.debug("Posicion menor que la mitad, comienza del fin");
+        Nodo<E> actual = fin;
+        int posActual = tamano - 1;
+        while (posActual > posicion && actual != null) {
+            actual = actual.getAnterior();
+            posActual--;
         }
 
         return actual;
@@ -115,26 +165,37 @@ public class Lista<E> implements Iterable<E> {
         return resultado.toString();
     }
 
+
     @Override
     public Iterator<E> iterator() {
         return new IteradorLista<>(inicio);
     }
 
+    public Nodo<E> getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Nodo<E> inicio) {
+        this.inicio = inicio;
+    }
+
+    public Nodo<E> getFin() {
+        return fin;
+    }
+
+    public void setFin(Nodo<E> fin) {
+        this.fin = fin;
+    }
+
     class Nodo<E> {
-        private E contenido;
         private Nodo<E> siguiente;
+        private Nodo<E> anterior;
+        private E contenido;
 
         public Nodo(E o) {
             contenido = o;
             siguiente = null;
-        }
-
-        public E getContenido() {
-            return contenido;
-        }
-
-        public void setContenido(E o) {
-            this.contenido = o;
+            anterior = null;
         }
 
         public Nodo<E> getSiguiente() {
@@ -143,6 +204,22 @@ public class Lista<E> implements Iterable<E> {
 
         public void setSiguiente(Nodo<E> siguiente) {
             this.siguiente = siguiente;
+        }
+
+        public Nodo<E> getAnterior() {
+            return anterior;
+        }
+
+        public void setAnterior(Nodo<E> anterior) {
+            this.anterior = anterior;
+        }
+
+        public E getContenido() {
+            return contenido;
+        }
+
+        public void setContenido(E contenido) {
+            this.contenido = contenido;
         }
 
         @Override
