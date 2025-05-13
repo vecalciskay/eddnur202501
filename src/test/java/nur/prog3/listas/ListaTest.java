@@ -113,4 +113,55 @@ public class ListaTest {
 
         assertEquals(expected, result);
     }
+
+    @Test
+    void ordenar10ElementosTest() {
+        Lista<String> lista = new Lista<>();
+        lista.insertar("Hugo");
+        lista.insertar("Paco");
+        lista.insertar("Luis");
+        lista.insertar("Daisy");
+        lista.insertar("Maria");
+        lista.insertar("Rolando");
+        lista.insertar("Carlos");
+        lista.insertar("Diego");
+
+        // ordena
+        lista.ordenar();
+        String expected = "Carlos --> Daisy --> Diego --> Hugo --> Luis --> Maria --> Paco --> Rolando --> ";
+        String result = lista.toString();
+
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void ordenarPersonas() {
+        // Arrange
+        Lista<PersonaParaLista> lista = new Lista<>();
+        PersonaParaLista p = new PersonaParaLista(
+                "Jorge","Gonzales", "9093809SC");
+        lista.insertar(p);
+        p = new PersonaParaLista(
+                "Daniel","Morales", "9423889SC");
+        lista.insertar(p);
+        p = new PersonaParaLista(
+                "Diego","Perez", "2393809SC");
+        lista.insertar(p);
+        p = new PersonaParaLista(
+                "Hugo","Morales", "962189SC");
+        lista.insertar(p);
+
+        // ACt
+        lista.ordenar();
+
+        // Assert
+        String expected =
+                "Gonzales, Jorge (9093809SC) --> " +
+                        "Morales, Daniel (9423889SC) --> " +
+                        "Morales, Hugo (962189SC) --> " +
+                        "Perez, Diego (2393809SC) --> ";
+        String result = lista.toString();
+
+        assertEquals(expected, result);
+    }
 }
