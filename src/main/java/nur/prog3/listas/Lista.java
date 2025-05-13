@@ -101,6 +101,37 @@ public class Lista<E> implements Iterable<E> {
         return null;
     }
 
+    public void ordenar() {
+        if (tamano == 0) return;
+
+        E primerElemento = inicio.getContenido();
+        if (!(primerElemento instanceof Comparable)) return;
+
+        int nroPase = 0;
+        boolean huboIntercambio = true;
+        while(huboIntercambio) {
+            huboIntercambio = false;
+            Nodo<E> actual = inicio;
+
+            while (actual.getSiguiente() != null) {
+                Nodo<E> siguienteDeActual = actual.getSiguiente();
+
+                Comparable<E> contenidoActual =
+                        (Comparable) actual.getContenido();
+                E contenidoSiguiente = siguienteDeActual.getContenido();
+
+                if (contenidoActual.compareTo(contenidoSiguiente) > 0) {
+                    siguienteDeActual.setContenido(actual.getContenido());
+                    actual.setContenido(contenidoSiguiente);
+                    huboIntercambio = true;
+                }
+                actual = actual.getSiguiente();
+            }
+            nroPase++;
+            logger.debug("Pasada nro " + nroPase + ", hubo intercambio " + (huboIntercambio ? "SI" : "NO"));
+        }
+    }
+
     @Override
     public String toString() {
         if (inicio == null)
