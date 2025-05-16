@@ -51,7 +51,8 @@ public class PersonaParaLista implements Comparable<PersonaParaLista> {
             return -1;
         if (nombres.compareTo(o.getNombres()) > 0)
             return 1;
+        return 0;
         // nombres y apellidos iguales, compara ci
-        return ci.compareTo(o.getCi());
+        //return ci.compareTo(o.getCi());
     }
 }

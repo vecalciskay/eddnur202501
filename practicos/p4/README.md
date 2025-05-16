@@ -44,6 +44,10 @@ algún elemento de la lista ese cambio es notificado
 a los observadores de la lista. En este caso,
 el panel principal. Implementar patrón observer.
 
+## Prototipo visto en clase
+
+![Prototipo](proto.png)
+
 ## Fecha de presentación
 
 El práctico debe presentarse el martes 20 de mayo de 2025.

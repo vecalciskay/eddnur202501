@@ -7,6 +7,37 @@ public class ListaOrdenada<E> extends Lista<E> {
     }
 
     @Override
+    public E buscar(E o) {
+        return busquedaDicotomica(0,tamano - 1, o);
+    }
+
+    private E busquedaDicotomica(int primero, int ultimo, E o) {
+        if (primero == ultimo)
+            return null;
+
+        if (ultimo - primero == 1) {
+            Comparable comparablePrimero = (Comparable) get(primero);
+            if (comparablePrimero.compareTo(o) == 0)
+                return get(primero);
+            Comparable comparableUltimo = (Comparable) get(ultimo);
+            if (comparableUltimo.compareTo(o) == 0)
+                return get(ultimo);
+            return null;
+        }
+
+
+        int mitad = (ultimo + primero) / 2;
+        Comparable objMitad = (Comparable)get(mitad);
+        if (objMitad.compareTo(o) < 0) {
+            return busquedaDicotomica(mitad, ultimo, o);
+        } else if(objMitad.compareTo(o) > 0) {
+            return busquedaDicotomica(primero, mitad, o);
+        } else {
+            return get(mitad);
+        }
+    }
+
+    @Override
     public void insertar(E o) {
         if (tamano == 0 ||
                 !(o instanceof Comparable)) {

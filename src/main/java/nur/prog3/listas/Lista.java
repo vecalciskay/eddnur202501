@@ -22,6 +22,16 @@ public class Lista<E> implements Iterable<E> {
         tamano++;
     }
 
+    public E buscar(E o) {
+        for (E iter:
+             this) {
+            if (iter.equals(o)) {
+                return iter;
+            }
+        }
+        return null;
+    }
+
     /**
      * f -> b -> t -> a -> p ->
      * eliminar(2): elimina la posicion 2, es decir el elemento 't'
