@@ -12,3 +12,4 @@ debe ser presentado.
 | [TP2 - Servidor Web](./p2/README.md)           | Martes 8 de abril   |
 | [TP3 - Funciones servidor Web](./p3/README.md) | -                   |
 | [TP4 - Editor de figuras](./p4/README.md)      | Martes 20 de mayo   |
+| [TP5 - Buscador personas](./p5/README.md)      | Martes 03 de junio  |
