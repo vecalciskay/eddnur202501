@@ -3,6 +3,7 @@ package nur.prog3.listas;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class Lista<E> implements Iterable<E> {
@@ -22,14 +23,34 @@ public class Lista<E> implements Iterable<E> {
         tamano++;
     }
 
-    public E buscar(E o) {
+    public Lista<E> buscarMuchos(E o) {
+        Lista<E> resultado = new Lista<>();
+        for (E iter:
+                this) {
+            if (iter.equals(o)) {
+                resultado.insertar(iter);
+            }
+        }
+        return resultado;
+    }
+
+    public E buscar(E o, Comparator<E> comparador) {
         for (E iter:
              this) {
-            if (iter.equals(o)) {
+
+            boolean esIgual = comparador != null  ?
+                    comparador.compare(iter, o) == 0 :
+                    (iter.equals(o));
+
+            if (esIgual) {
                 return iter;
             }
         }
         return null;
+    }
+
+    public E buscar(E o) {
+        return buscar(o, null);
     }
 
     /**
@@ -149,9 +170,11 @@ public class Lista<E> implements Iterable<E> {
 
         StringBuilder resultado = new StringBuilder();
         Nodo<E> actual = inicio;
+        String separador = "";
         while(actual != null) {
-            resultado.append(actual.toString());
+            resultado.append(separador).append(actual.toString());
             actual = actual.getSiguiente();
+            separador = ", ";
         }
         return resultado.toString();
     }
