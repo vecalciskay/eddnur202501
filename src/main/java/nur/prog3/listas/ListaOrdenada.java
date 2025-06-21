@@ -1,6 +1,10 @@
 package nur.prog3.listas;
 
+import java.util.Comparator;
+
 public class ListaOrdenada<E> extends Lista<E> {
+
+    private Comparator<E> comparator;
     @Override
     public void ordenar() {
         return;

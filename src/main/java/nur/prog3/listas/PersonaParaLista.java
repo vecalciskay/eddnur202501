@@ -55,4 +55,6 @@ public class PersonaParaLista implements Comparable<PersonaParaLista> {
         // nombres y apellidos iguales, compara ci
         //return ci.compareTo(o.getCi());
     }
+
+
 }
