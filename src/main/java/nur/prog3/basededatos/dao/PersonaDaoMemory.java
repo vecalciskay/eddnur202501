@@ -26,7 +26,7 @@ public class PersonaDaoMemory implements PersonaDao {
     }
 
     @Override
-    public List<Persona> getListaPersonas() {
+    public List<Persona> getLista() {
         return personas;
     }
 }

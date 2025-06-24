@@ -46,7 +46,7 @@ public class PersonaDaoMySql implements PersonaDao {
     }
 
     @Override
-    public List<Persona> getListaPersonas() {
+    public List<Persona> getLista() {
         ConexionMySql conexion = ConexionMySql.getInstance();
         List<Persona> personas = new ArrayList<>();
 

@@ -26,7 +26,7 @@ public class PersonaDaoFile implements PersonaDao {
     @Override
     public int insertar(Persona persona) {
 
-        List<Persona> personas = getListaPersonas();
+        List<Persona> personas = getLista();
         persona.setId(idActual);
         personas.add(persona);
 
@@ -51,7 +51,7 @@ public class PersonaDaoFile implements PersonaDao {
     }
 
     @Override
-    public List<Persona> getListaPersonas() {
+    public List<Persona> getLista() {
         List<Persona> personas = new ArrayList<>();
         Path ruta = Paths.get(fileName);
         if(!Files.exists(ruta)) {

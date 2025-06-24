@@ -30,6 +30,6 @@ public class PersonaService {
     }
 
     public List<Persona> obtenerPersonas() {
-        return personaDao.getListaPersonas();
+        return personaDao.getLista();
     }
 }
