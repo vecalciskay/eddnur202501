@@ -27,6 +27,6 @@ public class Arista<E> {
 
     @Override
     public String toString() {
-        return "---" + peso + "---" + destino.getId();
+        return " -> " + destino.getId() + " [label=\"" + peso + "\"];";
     }
 }
