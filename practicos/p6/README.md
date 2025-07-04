@@ -1,7 +1,5 @@
 Solicitud HTTP (POST Request)
-http
-Copiar
-Editar
+
 ```json
 POST /evaluar HTTP/1.1
 Host: ejemplo.com
